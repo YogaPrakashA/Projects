@@ -13,9 +13,9 @@ public class RailwayApplication implements ApplicationProcess {
     int racTickets = 1;
     int waitingTickets = 1;
     Scanner sc = new Scanner(System.in);
-    List<UserDetails> bookedDetails = new ArrayList<>();
-    List<UserDetails> racDetails = new ArrayList<>();
-    List<UserDetails> waitingDetails = new ArrayList<>();
+    List<PassengerDetails> bookedDetails = new ArrayList<>();
+    List<PassengerDetails> racDetails = new ArrayList<>();
+    List<PassengerDetails> waitingDetails = new ArrayList<>();
 
     @Override
     public void bookTicket() {
@@ -50,37 +50,37 @@ public class RailwayApplication implements ApplicationProcess {
         }
 
         if (age < 5) {
-            bookedDetails.add(new UserDetails(userIdGenerate++, name, age, gender, berth));
+            bookedDetails.add(new PassengerDetails(userIdGenerate++, name, age, gender, berth));
             return;
         }
 
         if ((age >= 60 && lowerBerth > 0) || (middleBerth == 0 && upperBerth == 0)) {
-            bookedDetails.add(new UserDetails(userIdGenerate++, name, age, gender, "Lower"));
+            bookedDetails.add(new PassengerDetails(userIdGenerate++, name, age, gender, "Lower"));
             lowerBerth--;
             totalTickets--;
             return;
         }
         if (middleBerth > 0) {
-            bookedDetails.add(new UserDetails(userIdGenerate++, name, age, gender, "middle"));
+            bookedDetails.add(new PassengerDetails(userIdGenerate++, name, age, gender, "middle"));
             middleBerth--;
             totalTickets--;
             return;
         }
         if (upperBerth > 0) {
-            bookedDetails.add(new UserDetails(userIdGenerate++, name, age, gender, "Upper"));
+            bookedDetails.add(new PassengerDetails(userIdGenerate++, name, age, gender, "Upper"));
             upperBerth--;
             totalTickets--;
             return;
         }
 
         if (racTickets > 0) {
-            racDetails.add(new UserDetails(userIdGenerate++, name, age, gender, "RAC"));
+            racDetails.add(new PassengerDetails(userIdGenerate++, name, age, gender, "RAC"));
             racTickets--;
             return;
         }
 
         if (waitingTickets > 0) {
-            waitingDetails.add(new UserDetails(userIdGenerate++, name, age, gender, "WL"));
+            waitingDetails.add(new PassengerDetails(userIdGenerate++, name, age, gender, "WL"));
             waitingTickets--;
         }
 
@@ -95,9 +95,9 @@ public class RailwayApplication implements ApplicationProcess {
         for (int i = 0; i < bookedDetails.size(); i++) {
             if (bookedDetails.get(i).getUserId() == userId) {
                 if (!racDetails.isEmpty()) {
-                    bookedDetails.set(i, new UserDetails(racDetails.get(0).getUserId(), racDetails.get(0).getName(), racDetails.get(0).getAge(), racDetails.get(0).getGender(), bookedDetails.get(i).getBerth()));
+                    bookedDetails.set(i, new PassengerDetails(racDetails.get(0).getUserId(), racDetails.get(0).getName(), racDetails.get(0).getAge(), racDetails.get(0).getGender(), bookedDetails.get(i).getBerth()));
                     if (!waitingDetails.isEmpty()) {
-                        racDetails.add(new UserDetails(waitingDetails.get(0).getUserId(), waitingDetails.get(0).getName(), waitingDetails.get(0).getAge(), waitingDetails.get(0).getGender(), racDetails.get(0).getBerth()));
+                        racDetails.add(new PassengerDetails(waitingDetails.get(0).getUserId(), waitingDetails.get(0).getName(), waitingDetails.get(0).getAge(), waitingDetails.get(0).getGender(), racDetails.get(0).getBerth()));
                         waitingDetails.remove(0);
                         waitingTickets++;
                     } else {
@@ -149,11 +149,11 @@ public class RailwayApplication implements ApplicationProcess {
         }
 
 
-        for (UserDetails user : bookedDetails)
+        for (PassengerDetails user : bookedDetails)
             System.out.println(user.getUserId() + " | " + user.getName() + " | " + user.getAge() + " | " + user.getGender() + " | " + user.getBerth());
-        for (UserDetails user : racDetails)
+        for (PassengerDetails user : racDetails)
             System.out.println(user.getUserId() + " | " + user.getName() + " | " + user.getAge() + " | " + user.getGender() + " | " + user.getBerth());
-        for (UserDetails user : waitingDetails)
+        for (PassengerDetails user : waitingDetails)
             System.out.println(user.getUserId() + " | " + user.getName() + " | " + user.getAge() + " | " + user.getGender() + " | " + user.getBerth());
 
 
