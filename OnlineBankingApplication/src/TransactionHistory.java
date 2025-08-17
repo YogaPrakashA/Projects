@@ -3,7 +3,7 @@ import java.util.Map;
 public class TransactionHistory {
 
     public void transaction() {
-        for (Map.Entry<Long, CustomerDetails> s : Main.tamilNaduBankDB.entrySet()) {
+        for (Map.Entry<Long, TransactionHistoryDetails> s : Main.transactionHistory.entrySet()) {
             System.out.println(s.toString());
         }
     }

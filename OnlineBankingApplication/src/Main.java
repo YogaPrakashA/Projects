@@ -5,7 +5,7 @@ import java.util.Scanner;
 public class Main {
     static Map<Long, CustomerDetails> tamilNaduBankDB;
     static Map<Long, CustomerDetails> nationalDB;
-    static Map<Long, CustomerDetails> transactionHistory;
+    static Map<Long, TransactionHistoryDetails> transactionHistory;
     static long accountNumber = 8123456783L;
 
     static {
@@ -48,6 +48,7 @@ public class Main {
                 depositAmount.depositAmount();
             } else if (choice == 3) {
                 WithdrawalAmount withdrawalAmount = new WithdrawalAmount();
+                withdrawalAmount.withdrawalAmount();
             } else if (choice == 4) {
                 TransferAmount transferAmount = new TransferAmount();
             } else if (choice == 5) {
