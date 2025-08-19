@@ -51,6 +51,7 @@ public class Main {
                 withdrawalAmount.withdrawalAmount();
             } else if (choice == 4) {
                 TransferAmount transferAmount = new TransferAmount();
+                transferAmount.transferAmount();
             } else if (choice == 5) {
                 CheckAvailableBalance checkAvailableBalance = new CheckAvailableBalance();
                 checkAvailableBalance.checkAvailableBalance();

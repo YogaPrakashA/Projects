@@ -9,7 +9,7 @@ public class CreateNewAccount {
         try {
             System.out.println("Please fill given fields....");
             Scanner sc = new Scanner(System.in);
-            System.out.print("AccountHolderName : ");
+            System.out.print("Name : ");
             String accountHolderName = sc.nextLine();
             System.out.print("MobileNumber : ");
             long mobileNumber = sc.nextLong();
